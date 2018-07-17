@@ -6,6 +6,7 @@ See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_r
 
 ### API
 
+	const LRU = require('lru-with-ttl')
 	const store = new LRU({ maxItems, ttl })
 
 	store.set(k, v, [ttl])
