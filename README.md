@@ -1,4 +1,6 @@
-## A Time-aware LRU key--value store with global/per value ttl setting and efficient lookup
+## LRU with Ttl
+
+### A Time-aware LRU key-value store with global/per value ttl setting and efficient lookup
 
 See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_recently_used_(TLRU)
 
