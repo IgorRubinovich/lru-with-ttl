@@ -1,6 +1,6 @@
 {
   "name": "lru-with-ttl",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A Time-aware LRU key--value store with global/per value ttl setting and efficient lookup",
   "main": "index.js",
   "directories": {

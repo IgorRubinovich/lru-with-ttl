@@ -62,8 +62,6 @@ class LRUWithTtl extends EventEmitter {
 		{
 			const newEntry = { k, v };
 
-			//this.data[k] = cacheEntry;
-			
 			this.data.set(k, newEntry);
 		
 			if(this.LRUQueue.length + 1 > this.maxItems)
@@ -83,9 +81,6 @@ class LRUWithTtl extends EventEmitter {
 		
 		this.unScheduleExpiry(d);
 
-		if(d.k == 'x1')
-			debugger;
-		
 		this.LRUQueue.remove(d.queueEntry);
 
 		this.data.delete(k);
