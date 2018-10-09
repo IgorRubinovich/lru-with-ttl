@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/IgorRubinovich/lru-with-ttl/issues"
   },
-  "homepage": "https://github.com/IgorRubinovich/lru-with-ttl#readme"
+  "homepage": "https://github.com/IgorRubinovich/lru-with-ttl#readme",
+  "dependencies": {
+    "fast-deep-equal": "^2.0.1"
+  }
 }
