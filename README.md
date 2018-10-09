@@ -7,7 +7,7 @@ See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_r
 ### API
 
 	const LRU = require('lru-with-ttl')
-	const store = new LRU({ maxItems, ttl })
+	const store = new LRU({ maxItems, ttl, touchOnGet })
 
 	store.set(k, v, [ttl])
 
@@ -19,5 +19,15 @@ See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_r
 	store.on('update', onUpdate)
 	store.on('eviction', onEviction)
 
+#### options
+##### maxItems (default : 1000)
+Max items to store before the oldest item gets evicted
+
+##### ttl  (default : undefined)
+Cache expiry time in milliseconds. When undefined items purged only when maxItems is reached
+
+##### touchOnGet
+
+	
 ## License
 MIT

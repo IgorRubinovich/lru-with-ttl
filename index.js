@@ -19,6 +19,7 @@ class LRUWithTtl extends EventEmitter {
 		this.options = { ...options };
 		this.data = new Map();
 		this.LRUQueue = new LinkedQueue();
+		this.touchOnGet = typeof options.touchOnGet == 'undefined' ? true : options.touchOnGet;
 	}
 	scheduleExpiry(entry, ttl) {
 		clearTimeout(entry.timer);
@@ -41,7 +42,7 @@ class LRUWithTtl extends EventEmitter {
 	get(k) {
 		const entry = this.data.get(k);
 		
-		entry && this._touch(entry);
+		(entry && this.touchOnGet) && this._touch(entry);
 
 		return entry && entry.v;
 	}
