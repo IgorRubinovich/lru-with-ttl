@@ -24,9 +24,10 @@ See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_r
 Max items to store before the oldest item gets evicted
 
 ##### ttl  (default : undefined)
-Cache expiry time in milliseconds. When undefined items purged only when maxItems is reached
+Cache expiry time in milliseconds. When undefined items purged only when maxItems is reached.
 
 ##### touchOnGet
+By default items get touched when read. Setting this to true will cause the items to expire after ttl and keep their place in the LRU queue regardless of reads.
 
 	
 ## License
