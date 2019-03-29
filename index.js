@@ -24,6 +24,7 @@ class LRUWithTtl extends EventEmitter {
 	scheduleExpiry(entry, ttl) {
 		clearTimeout(entry.timer);
 		ttl = ttl || entry.ttl || this.ttl;
+		entry.ttl = ttl;
 		entry.timer = ttl > 0 && setTimeout(() => this.delete(entry.k), ttl);
 	}
 	unScheduleExpiry(entry) {
