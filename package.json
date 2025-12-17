@@ -1,14 +1,17 @@
 {
   "name": "lru-with-ttl",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "description": "A Time-aware LRU key--value store with global/per value ttl setting and efficient lookup",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "test": "test"
   },
   "scripts": {
-    "test": "test/test.js"
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.js --external:events --external:fast-deep-equal && tsc --emitDeclarationOnly",
+    "prepublishOnly": "npm run build",
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,11 @@
   "homepage": "https://github.com/IgorRubinovich/lru-with-ttl#readme",
   "dependencies": {
     "fast-deep-equal": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "esbuild": "^0.27.2",
+    "jest": "^30.2.0",
+    "typescript": "^5.9.3"
   }
 }
