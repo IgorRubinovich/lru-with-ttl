@@ -2,7 +2,7 @@
 
 A Time-aware LRU key-value store with global/per value ttl setting and efficient lookup
 
-See: https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_recently_used_(TLRU)
+See details in [wikipedia](https://en.wikipedia.org/wiki/Cache_replacement_policies#Time_aware_least_recently_used_(TLRU))
 
 ### API
 
