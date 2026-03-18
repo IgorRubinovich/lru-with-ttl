@@ -1,4 +1,4 @@
-import EventEmitter = require('events');
+import { EventEmitter } from 'ee-ts';
 interface LruWithTtlOptions {
     maxItems?: number;
     ttl?: number;
@@ -8,11 +8,17 @@ interface CacheEntry<K, V> {
     k: K;
     v: V;
     ttl?: number;
-    timer?: NodeJS.Timeout;
+    timer?: any;
     queueEntry?: any;
     lastUsed?: number;
 }
-declare class LRUWithTtl<K = any, V = any> extends EventEmitter {
+interface LruEvents<K, V> {
+    touch(key: K, value: V): void;
+    update(key: K, value: V): void;
+    create(key: K, value: V, ttl?: number): void;
+    eviction(key: K, value: V): void;
+}
+declare class LRUWithTtl<K = any, V = any> extends EventEmitter<LruEvents<K, V>> {
     private maxItems;
     private ttl?;
     private options;
@@ -29,4 +35,4 @@ declare class LRUWithTtl<K = any, V = any> extends EventEmitter {
     delete(k: K): void;
     destroyAll(): void;
 }
-export = LRUWithTtl;
+export default LRUWithTtl;

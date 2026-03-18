@@ -127,4 +127,4 @@ class LinkedQueue<T = any> {
 	}
 }
 
-export = LinkedQueue;
+export default LinkedQueue;

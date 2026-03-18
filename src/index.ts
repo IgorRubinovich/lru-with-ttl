@@ -4,9 +4,9 @@
 	See README.md
 */
 
-import EventEmitter = require('events');
-import LinkedQueue = require('./LinkedQueue');
-import deepEqual = require('fast-deep-equal');
+import { EventEmitter } from 'ee-ts';
+import LinkedQueue from './LinkedQueue';
+import deepEqual from 'fast-deep-equal';
 
 interface LruWithTtlOptions {
     maxItems?: number;
@@ -18,12 +18,19 @@ interface CacheEntry<K, V> {
     k: K;
     v: V;
     ttl?: number;
-    timer?: NodeJS.Timeout;
+    timer?: any;
     queueEntry?: any;
     lastUsed?: number;
 }
 
-class LRUWithTtl<K = any, V = any> extends EventEmitter {
+interface LruEvents<K, V> {
+    touch(key: K, value: V): void;
+    update(key: K, value: V): void;
+    create(key: K, value: V, ttl?: number): void;
+    eviction(key: K, value: V): void;
+}
+
+class LRUWithTtl<K = any, V = any> extends EventEmitter<LruEvents<K, V>> {
     private maxItems: number;
     private ttl?: number;
     private options: LruWithTtlOptions;
@@ -137,4 +144,4 @@ class LRUWithTtl<K = any, V = any> extends EventEmitter {
 	}
 }
 
-export = LRUWithTtl;
+export default LRUWithTtl;

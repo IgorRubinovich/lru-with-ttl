@@ -17,4 +17,4 @@ declare class LinkedQueue<T = any> {
     dequeue(): T | undefined;
     clear(): void;
 }
-export = LinkedQueue;
+export default LinkedQueue;

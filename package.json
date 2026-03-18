@@ -1,15 +1,25 @@
 {
   "name": "lru-with-ttl",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "A Time-aware LRU key--value store with global/per value ttl setting and efficient lookup",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "directories": {
     "lib": "dist",
     "test": "test"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.js --external:events --external:fast-deep-equal && tsc --emitDeclarationOnly",
+    "build": "npm run build:cjs && npm run build:esm && tsc --emitDeclarationOnly",
+    "build:cjs": "esbuild src/index.ts --bundle --platform=node --format=cjs --outfile=dist/index.js --external:ee-ts --external:fast-deep-equal",
+    "build:esm": "esbuild src/index.ts --bundle --platform=neutral --format=esm --outfile=dist/index.mjs --external:ee-ts --external:fast-deep-equal",
     "prepublishOnly": "npm run build",
     "test": "node test/test.js"
   },
@@ -29,6 +39,7 @@
   },
   "homepage": "https://github.com/IgorRubinovich/lru-with-ttl#readme",
   "dependencies": {
+    "ee-ts": "^1.0.2",
     "fast-deep-equal": "^2.0.1"
   },
   "devDependencies": {
